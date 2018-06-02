@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProperty name="service" source="spring.application.name" defaultValue="service"/>
+    <property name="logPath" value="logs"/>
+
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <jmxConfigurator/>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+    <logger name="org.apache.kafka.clients.producer" level="ERROR"/>
+    <logger name="org.apache.kafka.clients.consumer" level="ERROR"/>
+    <logger name="org.apache.kafka.clients.admin" level="ERROR"/>
+
+    <logger name="org.springframework" level="INFO"/>
+    <!--<logger name="io.netty" level="INFO" />-->
+    <!--<logger name="org.eclipse.jetty" level="INFO"/>-->
+    <!--<logger name="jndi" level="INFO"/>-->
+    <!--<logger name="org.apache.commons" level="INFO"/>-->
+    <!--<logger name="springfox.documentation" level="INFO"/>-->
+    <!--<logger name="io.undertow" level="INFO"/>-->
+
+</configuration>

@@ -1,0 +1,41 @@
+server:
+  port: 8080
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/demo
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+          configuration:
+            commit.interval.mms: 1000
+            default.key.serde: org.apache.kafka.common.serialization.Serde$StringSerde
+            default.value.serde: org.apache.kafka.common.serialization.Serde$StringSerde
+#          consumer-properties:
+#            enable-auto-commit: true
+#          auto-create-topics: true
+        streams:
+          bindings:
+            cscout:
+              producer:
+                value-serde: org.apache.kafka.common.serialization.Serdes$LongSerde
+                key-serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+      bindings:
+        eout:
+          destination: events
+          producer:
+            header-mode: raw
+        ein:
+          destination: events
+          consumer:
+            header-mode: raw
+        eins:
+          destination: events
+          consumer:
+            header-mode: raw
+        cscout:
+          destination: events
+          producer:
+            use-native-encoding: true
